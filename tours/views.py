@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponseNotFound, HttpResponseServerError
 
 # Create your views here.
 
@@ -13,3 +14,11 @@ def departure_view(request, departure):
 
 def tour_view(request, id):
     return render(request, 'tour.html')
+
+
+def custom_handler404(request, exception):
+    return HttpResponseNotFound('404 — страница не найдена.')
+
+
+def custom_handler500(request):
+    return HttpResponseServerError('500 — внутренняя ошибка сервера.')
